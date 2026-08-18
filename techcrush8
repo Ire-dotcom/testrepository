@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor & Horizon | Hospitality & Tourism</title>
+    <meta
+      name="description"
+      content="Luxury hospitality and tourism website for unforgettable stays, curated trips, and local experiences."
+    />
+    <style>
+      :root {
+        --bg: #f8f6f1;
+        --surface: #ffffff;
+        --primary: #0f766e;
+        --primary-dark: #0a4f4a;
+        --secondary: #f59e0b;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --line: rgba(17, 24, 39, 0.08);
+        --shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-head {
+        text-align: center;
+        margin-bottom: 42px;
+      }
+
+      .eyebrow {
+        color: var(--primary);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      h1, h2, h3, h4 {
+        margin: 0 0 14px;
+        line-height: 1.15;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 5vw, 5rem);
+        letter-spacing: -0.04em;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.04em;
+      }
+
+      p {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 28px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        font-weight: 700;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 14px 28px rgba(15, 118, 110, 0.28);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn-secondary {
+        background: rgba(255,255,255,0.18);
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.35);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(248, 246, 241, 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 78px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 1.2rem;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--primary), #14b8a6);
+        color: #fff;
+        font-size: 1.1rem;
+        box-shadow: 0 12px 22px rgba(15, 118, 110, 0.25);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .nav-links a {
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 100%;
+        height: 2px;
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.2s ease;
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+
+      .nav-cta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .menu-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      .hero {
+        position: relative;
+        background:
+          linear-gradient(90deg, rgba(10, 18, 20, 0.74), rgba(10, 18, 20, 0.32)),
+          url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        min-height: 760px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+      }
+
+      .hero-content {
+        width: min(680px, 100%);
+        padding: 80px 0;
+      }
+
+      .hero p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+        max-width: 560px;
+      }
+
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+      }
+
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 26px;
+        margin-top: 38px;
+      }
+
+      .stat {
+        min-width: 120px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 2rem;
+        line-height: 1;
+      }
+
+      .stat span {
+        color: rgba(255,255,255,0.78);
+      }
+
+      .features-grid,
+      .destinations-grid,
+      .services-grid,
+      .testimonials-grid,
+      .contact-grid {
+        display: grid;
+        gap: 26px;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .feature-card {
+        background: var(--surface);
+        border-radius: var(--radius);
+        padding: 28px 22px;
+        border: 1px solid var(--line);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+      }
+
+      .icon-box {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        font-size: 1.7rem;
+        margin-bottom: 20px;
+        background: rgba(15, 118, 110, 0.08);
+        color: var(--primary);
+      }
+
+      .feature-card h3 {
+        font-size: 1.3rem;
+      }
+
+      .destinations-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .destination-card {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        min-height: 440px;
+        background: #d1d5db;
+        box-shadow: var(--shadow);
+      }
+
+      .destination-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .destination-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(2,6,23,0.05), rgba(2,6,23,0.76));
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 24px;
+        color: #fff;
+      }
+
+      .destination-overlay h3 {
+        font-size: 1.7rem;
+        margin-bottom: 8px;
+      }
+
+      .destination-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255,255,255,0.8);
+      }
+
+      .pricing {
+        background: rgba(255,255,255,0.14);
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      .package-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 12px 25px rgba(15, 23, 42, 0.05);
+      }
+
+      .package-card img {
+        height: 240px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .package-body {
+        padding: 24px;
+      }
+
+      .package-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .tag {
+        background: rgba(15, 118, 110, 0.08);
+        color: var(--primary);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .price {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .package-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px;
+        color: var(--muted);
+      }
+
+      .package-list li::before {
+        content: "✓ ";
+        color: var(--primary);
+        font-weight: 800;
+      }
+
+      .services {
+        background: #f1efe8;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .service-card {
+        padding: 30px 24px;
+        background: #fff;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+      }
+
+      .service-card .icon-box {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .testimonial {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 28px 22px;
+      }
+
+      .stars {
+        color: var(--secondary);
+        letter-spacing: 0.18em;
+        margin-bottom: 18px;
+      }
+
+      .person {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .person img {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .person small {
+        color: var(--muted);
+      }
+
+      .cta {
+        background: linear-gradient(135deg, #0f766e 0%, #0a4f4a 100%);
+        border-radius: 28px;
+        padding: 52px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        color: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .cta p {
+        color: rgba(255,255,255,0.78);
+        margin-bottom: 0;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: start;
+      }
+
+      .contact-card,
+      .info-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 30px;
+      }
+
+      form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      input, textarea {
+        width: 100%;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        background: #fff;
+        border-radius: 14px;
+        padding: 16px 18px;
+        font: inherit;
+        color: var(--text);
+      }
+
+      textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      .info-list {
+        list-style: none;
+        padding: 0;
+        margin: 22px 0 0;
+        display: grid;
+        gap: 18px;
+      }
+
+      .info-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        color: var(--muted);
+      }
+
+      .info-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: rgba(15, 118, 110, 0.08);
+        color: var(--primary);
+      }
+
+      footer {
+        background: #0a1017;
+        color: rgba(255,255,255,0.75);
+        padding: 26px 0;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 980px) {
+        .features-grid,
+        .services-grid,
+        .destinations-grid,
+        .testimonials-grid,
+        .contact-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .nav-links {
+          position: absolute;
+          left: 16px;
+          right: 16px;
+          top: 82px;
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 18px;
+          padding: 18px 20px;
+          background: rgba(255,255,255,0.96);
+          border: 1px solid var(--line);
+          border-radius: 18px;
+          box-shadow: var(--shadow);
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .features-grid,
+        .services-grid,
+        .destinations-grid,
+        .testimonials-grid,
+        .contact-grid,
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-cta {
+          display: none;
+        }
+
+        .hero {
+          min-height: 640px;
+        }
+
+        .cta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand" aria-label="Harbor and Horizon brand">
+          <div class="brand-mark">H</div>
+          <span>Harbor &amp; Horizon</span>
+        </div>
+
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#destinations">Destinations</a>
+          <a href="#packages">Packages</a>
+          <a href="#services">Services</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a href="#contact" class="btn btn-primary">Book a Trip</a>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <div class="container">
+          <div class="hero-content">
+            <div class="eyebrow">Curated experiences</div>
+            <h1>Travel beautifully. Stay memorably.</h1>
+            <p>
+              We design refined hospitality and tourism experiences for travelers seeking
+              comfort, culture, and connection across breathtaking destinations.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#packages" class="btn btn-primary">Explore Packages</a>
+              <a href="#destinations" class="btn btn-secondary">View Destinations</a>
+            </div>
+
+            <div class="stats" aria-label="Company statistics">
+              <div class="stat">
+                <strong>28k+</strong>
+                <span>Happy guests</span>
+              </div>
+              <div class="stat">
+                <strong>160+</strong>
+                <span>Properties</span>
+              </div>
+              <div class="stat">
+                <strong>48</strong>
+                <span>Countries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Why choose us</div>
+            <h2>Hospitality built around your journey</h2>
+          </div>
+
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="icon-box">✦</div>
+              <h3>Luxury stays</h3>
+              <p>Handpicked boutique hotels, seaside resorts, and private villas for a lavish escape.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon-box">◎</div>
+              <h3>Tailored itineraries</h3>
+              <p>Every itinerary is designed around your interests, pace, and travel style.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon-box">☼</div>
+              <h3>Local immersion</h3>
+              <p>Discover authentic dining, hidden gems, and regional experiences that feel personal.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon-box">★</div>
+              <h3>Concierge care</h3>
+              <p>Our dedicated team handles logistics, transfers, and memorable on-ground support.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="destinations">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Popular routes</div>
+            <h2>Explore dream destinations</h2>
+          </div>
+
+          <div class="destinations-grid">
+            <article class="destination-card">
+              <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80" alt="Santorini coastline" />
+              <div class="destination-overlay">
+                <h3>Santorini</h3>
+                <div class="destination-meta">
+                  <span>Greece</span>
+                  <span class="pricing">From $899</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="destination-card">
+              <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80" alt="Swiss Alps" />
+              <div class="destination-overlay">
+                <h3>Swiss Alps</h3>
+                <div class="destination-meta">
+                  <span>Switzerland</span>
+                  <span class="pricing">From $1,280</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="destination-card">
+              <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=900&q=80" alt="Bali beach" />
+              <div class="destination-overlay">
+                <h3>Bali</h3>
+                <div class="destination-meta">
+                  <span>Indonesia</span>
+                  <span class="pricing">From $760</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="packages">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Signature packages</div>
+            <h2>Plan your perfect getaway</h2>
+          </div>
+
+          <div class="destinations-grid">
+            <article class="package-card">
+              <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80" alt="Beach resort package" />
+              <div class="package-body">
+                <div class="package-top">
+                  <span class="tag">Beach Escape</span>
+                  <span class="price">$1,250</span>
+                </div>
+                <h3>Maldives Retreat</h3>
+                <ul class="package-list">
+                  <li>4-night luxury villa stay</li>
+                  <li>Private island transfer</li>
+                  <li>Sunset dinner & spa access</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Reserve now</a>
+              </div>
+            </article>
+
+            <article class="package-card">
+              <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=900&q=80" alt="Mountain adventure package" />
+              <div class="package-body">
+                <div class="package-top">
+                  <span class="tag">Adventure</span>
+                  <span class="price">$1,680</span>
+                </div>
+                <h3>Alpine Journey</h3>
+                <ul class="package-list">
+                  <li>Hiking & scenic rail tour</li>
+                  <li>Chalet accommodation</li>
+                  <li>Local cheese tasting</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Reserve now</a>
+              </div>
+            </article>
+
+            <article class="package-card">
+              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Cultural city package" />
+              <div class="package-body">
+                <div class="package-top">
+                  <span class="tag">City & Culture</span>
+                  <span class="price">$980</span>
+                </div>
+                <h3>Paris Discovery</h3>
+                <ul class="package-list">
+                  <li>Elegant boutique hotel</li>
+                  <li>Guided museum tour</li>
+                  <li>Chef-led culinary experience</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Reserve now</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section services" id="services">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">What we offer</div>
+            <h2>Full-spectrum hospitality support</h2>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="icon-box">⌂</div>
+              <h3>Hotel booking</h3>
+              <p>Access premium rooms, resorts, and villas in high-demand destinations worldwide.</p>
+            </article>
+
+            <article class="service-card">
+              <div class="icon-box">✈</div>
+              <h3>Travel planning</h3>
+              <p>From flights to transport and excursions, we handle every detail for seamless travel.</p>
+            </article>
+
+            <article class="service-card">
+              <div class="icon-box">♢</div>
+              <h3>Event hosting</h3>
+              <p>Curate business retreats, destination weddings, and sophisticated group experiences.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="reviews">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Guest stories</div>
+            <h2>Travelers love the experience</h2>
+          </div>
+
+          <div class="testimonials-grid">
+            <article class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>“The attention to detail was extraordinary. Every day felt effortless, beautiful, and deeply personal.”</p>
+              <div class="person">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Alicia profile" />
+                <div>
+                  <strong>Alicia T.</strong><br />
+                  <small>Couples getaway</small>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>“From flights to villa check-in, everything ran flawlessly. We felt cared for from day one.”</p>
+              <div class="person">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Marcus profile" />
+                <div>
+                  <strong>Marcus L.</strong><br />
+                  <small>Adventure traveler</small>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="stars">★★★★★</div>
+              <p>“Our family trip was perfectly paced and beautifully organized. The local experiences were unforgettable.”</p>
+              <div class="person">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=200&q=80" alt="Nadia profile" />
+                <div>
+                  <strong>Nadia R.</strong><br />
+                  <small>Family vacation</small>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cta">
+            <div>
+              <div class="eyebrow" style="color:#d7f6f3;">Plan your next escape</div>
+              <h2 style="color:#fff; margin-bottom:0;">Let us create a journey worth remembering.</h2>
+            </div>
+            <a href="#contact" class="btn btn-secondary" style="font-size:1rem;">Start planning</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container contact-grid">
+          <div class="contact-card">
+            <div class="eyebrow">Send inquiry</div>
+            <h2>Tell us about your dream trip</h2>
+            <form>
+              <div class="field-row">
+                <input type="text" placeholder="Your name" aria-label="Your name" />
+                <input type="email" placeholder="Email address" aria-label="Email address" />
+              </div>
+              <div class="field-row">
+                <input type="text" placeholder="Destination" aria-label="Destination" />
+                <input type="text" placeholder="Travel dates" aria-label="Travel dates" />
+              </div>
+              <textarea placeholder="Tell us about your preferred experience..." aria-label="Trip details"></textarea>
+              <button class="btn btn-primary" type="submit">Submit request</button>
+            </form>
+          </div>
+
+          <aside class="info-card">
+            <div class="eyebrow">Visit us</div>
+            <h3>Hospitality studio</h3>
+            <ul class="info-list">
+              <li>
+                <div class="info-icon">📍</div>
+                <div>
+                  <strong>Address</strong><br />
+                  18 Oceanview Avenue, Suite 204, Miami, FL
+                </div>
+              </li>
+              <li>
+                <div class="info-icon">☎</div>
+                <div>
+                  <strong>Phone</strong><br />
+                  +1 (305) 555-0198
+                </div>
+              </li>
+              <li>
+                <div class="info-icon">✉</div>
+                <div>
+                  <strong>Email</strong><br />
+                  hello@harborhorizon.com
+                </div>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div class="brand" aria-label="Harbor and Horizon footer brand">
+          <div class="brand-mark">H</div>
+          <span>Harbor &amp; Horizon</span>
+        </div>
+        <div>© 2026 Harbor &amp; Horizon. Crafted for unforgettable travel.</div>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => navLinks.classList.remove('open'));
+      });
+    </script>
+  </body>
+</html>
